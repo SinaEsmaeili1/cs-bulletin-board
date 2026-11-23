@@ -1,0 +1,697 @@
+/* ==========================================================================
+   CS Bulletin Board styles. Sections, with their numbers in square brackets:
+   [1] Colour and font tokens    [2] Base, focus ring, long-word wrapping
+   [3] Header and skip link      [4] Page layout, text and chips
+   [5] Buttons                   [6] Search form and text box
+   [7] Status line               [8] Announcement cards and the list
+   [9] Panels and alerts         [10] Announcement page and back link
+   [11] Not-found block          [12] Footer
+   [13] Small screens (480px and narrower)
+   ========================================================================== */
+
+
+/* [1] Colour and font tokens. Change a colour here and every page follows. */
+
+:root {
+  --charcoal: #23252B;
+  --charcoal-hover: #3A3D45;
+  --warm-white: #FAF7F0;
+  --white: #FFFFFF;
+  --gold: #D9BE74;
+  --gold-hover: #E6CF92;
+  --gold-text: #73580F;
+  --gold-line: #B8973F;
+  --chip-bg: #F3EAD3;
+  --muted: #55585F;
+  --border: #E3DDCF;
+  --skeleton: #ECE7DB;
+  --error: #A3260F;
+  --error-bg: #FBEDEA;
+  --success: #1E5A3A;
+  --success-bg: #E8F2EC;
+  --header-label: #F0DFA8;
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+
+/* [2] Base */
+
+/* Padding and borders count inside an element's width, so nothing overflows its box. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* The hidden attribute must always hide. Without !important, display: flex or grid would override it. */
+[hidden] {
+  display: none !important;
+}
+
+/* A column layout with a full-height minimum keeps the footer at the bottom of short pages. */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--warm-white);
+  color: var(--charcoal);
+  font-family: var(--font-body);
+  font-size: 16px;
+}
+
+/* Default margins are removed, so the layout gaps decide the spacing. */
+h1,
+h2,
+p,
+dl,
+dd {
+  margin: 0;
+}
+
+svg {
+  flex-shrink: 0;
+  max-width: 100%;
+}
+
+a {
+  color: var(--gold-text);
+}
+
+a:hover {
+  color: var(--charcoal);
+}
+
+/* One focus ring for every control. On the charcoal header the ring is gold so it stays visible. */
+:focus-visible {
+  outline: 3px solid var(--gold-text);
+  outline-offset: 2px;
+}
+
+.site-header :focus-visible {
+  outline-color: var(--gold);
+}
+
+/* Long unbroken words (titles, emails, links) wrap instead of pushing the page sideways. */
+.page-title,
+.lead,
+.status,
+.card__title,
+.card__preview,
+.details__description,
+.details__extra dd,
+.details__extra a,
+.alert h2,
+.alert p {
+  overflow-wrap: anywhere;
+}
+
+/* Hides text from sighted users but keeps it for screen readers. */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* [3] Header and skip link */
+
+/* Off-screen until it gets keyboard focus, then it slides into view at the top left. */
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  z-index: 10;
+  padding: 10px 16px;
+  background: var(--white);
+  color: var(--charcoal);
+  border: 2px solid var(--charcoal);
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.site-header {
+  background: var(--charcoal);
+  color: var(--white);
+}
+
+.site-header__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.site-header__brand {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand,
+.brand:hover {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.brand__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.brand:hover .brand__name {
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-underline-offset: 4px;
+}
+
+.prototype-label {
+  padding: 3px 10px;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  color: var(--header-label);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+
+/* [4] Page layout, text and chips */
+
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 36px 24px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.page-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1.15;
+}
+
+.lead {
+  max-width: 640px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* Category label. Text only, so it does not rely on colour to show what it is. */
+.chip {
+  display: inline-block;
+  margin: 0;
+  padding: 4px 10px;
+  background: var(--chip-bg);
+  color: var(--gold-text);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 6px;
+}
+
+
+/* [5] Buttons. Every button is at least 48px tall. Links styled as buttons use the same classes. */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 2px solid var(--charcoal);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* The colour rules repeat :hover on purpose. A plain "a:hover" rule would otherwise turn button text charcoal. */
+.btn--primary,
+.btn--primary:hover {
+  background: var(--charcoal);
+  color: var(--white);
+}
+
+.btn--primary:hover {
+  background: var(--charcoal-hover);
+  border-color: var(--charcoal-hover);
+}
+
+.btn--secondary,
+.btn--secondary:hover {
+  background: var(--white);
+  color: var(--charcoal);
+}
+
+.btn--secondary:hover {
+  background: var(--warm-white);
+}
+
+/* Gold button in the header. Its border matches its background, so it looks borderless. */
+.btn--gold,
+.btn--gold:hover {
+  min-height: 44px;
+  padding: 10px 18px;
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--charcoal);
+}
+
+.btn--gold:hover {
+  background: var(--gold-hover);
+  border-color: var(--gold-hover);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* [6] Search form and text box */
+
+/* The label sits above the box. The buttons sit beside it and wrap onto new rows on narrow screens. */
+.search {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.search__field {
+  flex: 1 1 280px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.search label {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.search .btn {
+  min-height: 52px;
+}
+
+/* Shared text box style: 52px tall with a 2px charcoal border. */
+.input {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  font: inherit;
+  font-size: 17px;
+  color: var(--charcoal);
+  background: var(--white);
+  border: 2px solid var(--charcoal);
+  border-radius: 8px;
+}
+
+
+/* [7] Status line, announced to screen readers by role="status" */
+
+.status {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* An empty status line takes no space, so the layout gap does not show as a blank band. */
+.status:empty {
+  display: none;
+}
+
+
+/* [8] Announcement cards and the list */
+
+/* Columns of at least 300px. On a very narrow screen, one column as wide as the screen. */
+.card-grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: 20px;
+}
+
+.card-grid__item {
+  display: flex;
+}
+
+.card {
+  position: relative; /* the stretched title link covers the whole card, see .card__title a::after */
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+/* Border turns charcoal when the card is hovered or a key inside it has focus. */
+.card-grid__item .card:hover,
+.card-grid__item .card:focus-within {
+  border-color: var(--charcoal);
+}
+
+.card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.card__demo {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.card__title {
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+/* Charcoal title with a gold underline, as in the mockup. */
+.card__title a,
+.card__title a:hover {
+  color: var(--charcoal);
+  text-decoration: underline;
+  text-decoration-color: var(--gold-line);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* The "stretched link": this invisible layer covers the card, so clicking anywhere opens the announcement. */
+.card__title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+}
+
+/* Shows at most three lines of the description. The rest is cut off with the CSS clamp. */
+.card__preview {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* margin-top: auto pushes the footer row to the bottom when cards in a row have different heights. */
+.card__footer {
+  margin: 0;
+  margin-top: auto;
+  padding-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 12px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.card__more {
+  color: var(--gold-text);
+  font-weight: 600;
+}
+
+/* Loading placeholders: same card shape, with grey blocks where the text will go. */
+.skeleton-card {
+  gap: 12px;
+}
+
+.skeleton {
+  height: 14px;
+  background: var(--skeleton);
+  border-radius: 6px;
+}
+
+.skeleton--chip {
+  width: 90px;
+  height: 22px;
+}
+
+.skeleton--title {
+  width: 85%;
+  height: 22px;
+}
+
+.skeleton--line {
+  width: 100%;
+}
+
+.skeleton--line-short {
+  width: 70%;
+}
+
+
+/* [9] Panels and alerts */
+
+/* White box with a border. Used for the empty and no-results messages and the noscript note. */
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 32px 24px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.panel h2 {
+  font-size: 22px;
+}
+
+/* The panel paragraph style. :where() keeps this rule's specificity at zero, so a class such as
+   .details__description (which can sit inside a panel) still wins over it. */
+:where(.panel) p {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* Red error box, with an icon next to its heading so it is not shown by colour alone. */
+.alert {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 24px;
+  background: var(--error-bg);
+  border: 2px solid var(--error);
+  border-radius: 12px;
+}
+
+.alert h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 21px;
+  color: var(--error);
+}
+
+.alert p {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--charcoal);
+}
+
+
+/* [10] Announcement page and back link */
+
+.back-link,
+.back-link:hover {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  color: var(--charcoal);
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.details {
+  width: 100%;
+  max-width: 760px;
+  align-items: stretch; /* the rows below need the full width, unlike other panels */
+  gap: 20px;
+  padding: 32px;
+}
+
+.details__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.details__posted {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.details__title {
+  font-size: 34px;
+  line-height: 1.2;
+}
+
+/* pre-line keeps the line breaks the author typed, but still wraps long lines. */
+.details__description {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--charcoal);
+  white-space: pre-line;
+}
+
+.details__extra {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.details__extra > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.details__extra dt {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+}
+
+.details__extra dd {
+  font-size: 17px;
+}
+
+.details__extra a {
+  font-weight: 600;
+}
+
+
+/* [11] Not-found block. Used inside the details page. */
+
+.not-found {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px 0;
+}
+
+.not-found .page-title {
+  font-size: 34px;
+  line-height: 1.2;
+}
+
+.not-found .lead {
+  line-height: 1.6;
+}
+
+
+/* [12] Footer */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+}
+
+.site-footer p {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+
+/* [13] Small screens: 480px and narrower */
+
+@media (max-width: 480px) {
+  .site-header__inner {
+    padding: 12px 16px;
+  }
+
+  .page {
+    padding: 24px 16px 40px;
+  }
+
+  .page-title,
+  .details__title,
+  .not-found .page-title {
+    font-size: 30px;
+  }
+
+  .card,
+  .panel,
+  .alert,
+  .details {
+    padding: 20px 16px;
+  }
+
+  /* On phones the search buttons take the full width, one under the other. */
+  .search .btn {
+    width: 100%;
+  }
+}

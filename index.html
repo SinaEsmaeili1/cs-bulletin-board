@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Announcements – CS Bulletin Board</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+
+  <header class="site-header">
+    <div class="site-header__inner">
+
+      <div class="site-header__brand">
+        <a class="brand" href="index.html">
+          <svg
+            aria-hidden="true"
+            width="26"
+            height="26"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#D9BE74"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+            <path d="M7 9h10M7 13h6"></path>
+            <circle cx="17" cy="4" r="1.6" fill="#D9BE74"></circle>
+          </svg>
+          <span class="brand__name">CS Bulletin Board</span>
+        </a>
+        <span class="prototype-label">Student project prototype</span>
+      </div>
+
+      <a class="btn btn--gold" href="post.html">
+        <svg
+          aria-hidden="true"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#23252B"
+          stroke-width="2.5"
+          stroke-linecap="round">
+          <path d="M12 5v14M5 12h14"></path>
+        </svg>
+        Post an announcement
+      </a>
+
+    </div>
+  </header>
+
+
+  <main id="main" class="page">
+
+    <div class="page-intro">
+      <h1 class="page-title">Announcements</h1>
+      <p class="lead">
+        Tutoring, clubs, events and opportunities posted by students.
+        Browse freely — no account needed.
+      </p>
+    </div>
+
+    <form id="search-form" class="search" role="search" action="index.html" method="get">
+      <div class="search__field">
+        <label for="q">Search announcement titles</label>
+        <input id="q" class="input" name="q" type="search" autocomplete="off" maxlength="120">
+      </div>
+      <button id="search-button" type="submit" class="btn btn--primary">Search</button>
+      <button id="clear-search" type="button" class="btn btn--secondary" hidden>Clear search</button>
+    </form>
+
+    <p id="board-status" class="status" role="status"></p>
+
+    <section id="no-results" class="panel" hidden>
+      <h2>No titles match “<span id="no-results-query"></span>”</h2>
+      <p>Try a different word, or clear the search to see every announcement.</p>
+      <button id="no-results-clear" type="button" class="btn btn--secondary">Clear search</button>
+    </section>
+
+    <section id="empty-board" class="panel" hidden>
+      <h2>Nothing on the board yet</h2>
+      <p>When someone posts an announcement, it will appear here.</p>
+      <a class="btn btn--primary" href="post.html">Post an announcement</a>
+    </section>
+
+    <ul id="announcement-list" class="card-grid" hidden></ul>
+
+    <noscript>
+      <p class="panel">This page needs JavaScript to load the announcements.</p>
+    </noscript>
+
+  </main>
+
+
+  <footer class="site-footer">
+    <p>CS Bulletin Board is a CSCI2690 student project prototype.</p>
+  </footer>
+
+
+  <script src="js/notices.js"></script>
+  <script src="js/board.js"></script>
+
+</body>
+</html>

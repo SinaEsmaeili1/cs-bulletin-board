@@ -1,0 +1,285 @@
+/* ==========================================================================
+   Post an announcement page. Loaded after css/styles.css, on this page only.
+   Sections, with their numbers in square brackets:
+   [1] Column and heading       [2] Form panel and fields
+   [3] Error text under fields  [4] Error boxes (alerts)
+   [5] Success panel            [6] Submit row and sending state
+   [7] Focus for script-moved focus   [8] Small screens (480px and narrower)
+   ========================================================================== */
+
+
+/* [1] Column and heading */
+
+/* The column that holds the heading, the success panel and the form. At most 720px wide. */
+.form-column {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Heading and intro sit close together, as in the mockup. */
+.form-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.page-title--form {
+  font-size: 36px;
+  line-height: 1.15;
+}
+
+/* The shared .lead has a 640px limit and 18px text. Here the intro uses the full column at 17px. */
+.lead--form {
+  max-width: none;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+
+/* [2] Form panel and fields */
+
+/* The shared .panel centres its children (align-items: flex-start), so stretch them here
+   so every field and button takes the full width of the panel. */
+.form {
+  align-items: stretch;
+  gap: 22px;
+  padding: 28px;
+}
+
+/* One field: label, hint, error and control, stacked. */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Wraps on a very narrow screen so "Contact information" and its tag can sit on two lines. */
+.field__label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+/* "Required" and "Optional" tags. The words show the state, not only the colour. */
+.tag {
+  display: inline-block;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
+.tag--required {
+  padding: 2px 8px;
+  background: var(--chip-bg);
+  color: var(--charcoal);
+  font-weight: 700;
+}
+
+.tag--optional {
+  padding: 1px 8px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.field__hint {
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* The text boxes, the select and the textarea share one look: 52px tall, 2px charcoal border. */
+.field__control {
+  width: 100%;
+  height: 52px;
+  padding: 0 14px;
+  font: inherit;
+  font-size: 17px;
+  color: var(--charcoal);
+  background: var(--white);
+  border: 2px solid var(--charcoal);
+  border-radius: 8px;
+}
+
+/* The description box is taller: about seven lines (7 x 1.5 line height, plus padding and border),
+   and the reader can drag it taller. */
+textarea.field__control {
+  height: auto;
+  min-height: calc(7 * 1.5em + 28px);
+  padding: 12px 14px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+/* A field with an error gets a thicker red border. The thickness shows the error, not only the colour. */
+.field--invalid .field__control {
+  border: 3px solid var(--error);
+}
+
+
+/* [3] Error text under fields */
+
+/* The error row: a red icon and the message. The icon keeps its size and sits level with the first line. */
+.field__error {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--error);
+  overflow-wrap: anywhere;
+}
+
+.field__error svg {
+  flex: none;
+  margin-top: 2px;
+}
+
+
+/* [4] Error boxes (alerts) */
+
+/* The two red boxes reuse the shared .alert. Only the spacing and corners change here. */
+.form-alert {
+  align-items: stretch;
+  gap: 6px;
+  padding: 16px 18px;
+  border-radius: 10px;
+}
+
+/* The shared .alert p rule sets the paragraph size and colour. These selectors also use
+   .form-alert, so they win over it. */
+.form-alert .form-alert__title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--error);
+}
+
+.form-alert .form-alert__text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--charcoal);
+}
+
+/* The error summary list. Long unbroken words wrap instead of widening the box. */
+.form-alert__list {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.form-alert__list a,
+.form-alert__list a:hover {
+  color: var(--error);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+
+/* [5] Success panel */
+
+/* Shown in place of the form after the announcement has been saved. */
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 24px;
+  background: var(--success-bg);
+  border: 2px solid var(--success);
+  border-radius: 12px;
+}
+
+.success__heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  color: var(--success);
+}
+
+.success__text {
+  font-size: 17px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* The three buttons: they wrap onto new lines when there is no room. */
+.success__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+
+/* [6] Submit row and sending state */
+
+/* The submit button and the live status line sit side by side, and wrap on narrow screens. */
+.form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding-top: 4px;
+}
+
+.form__submit {
+  min-width: 200px;
+}
+
+/* Keeps the live status line in the layout when it is empty, so screen readers pick up its
+   text. The shared .status:empty rule would hide it. */
+.form__actions .status:empty {
+  display: block;
+}
+
+/* The status line is a plain text line here, as in the mockup (the shared .status is bolder). */
+.form__actions .status {
+  font-weight: 400;
+}
+
+/* While a post is being saved the button looks dimmed. It is aria-disabled, not disabled,
+   so it keeps keyboard focus. */
+.btn[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: default;
+}
+
+
+/* [7] Focus for script-moved focus */
+
+/* Boxes and headings that take focus from script (not from a key press) get the same ring as
+   the shared focus style. */
+[tabindex="-1"]:focus {
+  outline: 3px solid var(--gold-text);
+  outline-offset: 2px;
+}
+
+
+/* [8] Small screens: 480px and narrower */
+
+@media (max-width: 480px) {
+  .form {
+    padding: 20px 16px;
+  }
+
+  .page-title--form {
+    font-size: 30px;
+  }
+
+  /* On phones the submit button and the success buttons take the full width, one under the other. */
+  .form__submit,
+  .success__actions {
+    width: 100%;
+  }
+
+  .success__actions .btn {
+    width: 100%;
+  }
+}

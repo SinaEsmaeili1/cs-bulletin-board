@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Post an announcement – CS Bulletin Board</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/form.css">
+</head>
+
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+
+  <header class="site-header">
+    <div class="site-header__inner">
+
+      <div class="site-header__brand">
+        <a class="brand" href="index.html">
+          <svg
+            aria-hidden="true"
+            width="26"
+            height="26"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#D9BE74"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+            <path d="M7 9h10M7 13h6"></path>
+            <circle cx="17" cy="4" r="1.6" fill="#D9BE74"></circle>
+          </svg>
+          <span class="brand__name">CS Bulletin Board</span>
+        </a>
+        <span class="prototype-label">Student project prototype</span>
+      </div>
+
+      <a class="btn btn--gold" href="post.html" aria-current="page">
+        <svg
+          aria-hidden="true"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#23252B"
+          stroke-width="2.5"
+          stroke-linecap="round">
+          <path d="M12 5v14M5 12h14"></path>
+        </svg>
+        Post an announcement
+      </a>
+
+    </div>
+  </header>
+
+
+  <main id="main" class="page">
+
+    <a class="back-link" href="index.html">
+      <svg
+        aria-hidden="true"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#23252B"
+        stroke-width="2.2"
+        stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6"></path>
+      </svg>
+      Back to all announcements
+    </a>
+
+    <div class="form-column">
+
+      <div class="form-intro">
+        <h1 class="page-title page-title--form">Post an announcement</h1>
+        <p class="lead lead--form">
+          Fields marked Required must be filled in.
+          Your announcement appears on the board once it’s saved.
+        </p>
+      </div>
+
+
+      <!-- Shown only after the announcement has been saved. -->
+
+      <section id="success-panel" class="success" hidden>
+
+        <h2 id="success-heading" class="success__heading" tabindex="-1">
+          <svg
+            aria-hidden="true"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#1E5A3A"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M8 12.5l2.7 2.7L16 9.8"></path>
+          </svg>
+          Announcement posted
+        </h2>
+
+        <p class="success__text">“<span id="success-title"></span>” is saved and now on the board.</p>
+
+        <div class="success__actions">
+          <a id="view-announcement" class="btn btn--primary" href="index.html">View your announcement</a>
+          <a class="btn btn--secondary" href="index.html">Back to the board</a>
+          <button id="post-another" type="button" class="btn btn--secondary">Post another</button>
+        </div>
+
+      </section>
+
+
+      <!-- The form. novalidate: checks run in post.js, using the rules in validation.js. -->
+
+      <form id="post-form" class="panel form" novalidate>
+
+        <!-- Red box for a failed save (the browser could not store the announcement). -->
+        <div id="save-error" class="alert form-alert" role="alert" tabindex="-1" hidden>
+          <p id="save-error-title" class="form-alert__title"></p>
+          <p id="save-error-text" class="form-alert__text"></p>
+        </div>
+
+        <!-- Red box listing every field error, each link jumps to its field. -->
+        <div id="error-summary" class="alert form-alert" role="alert" tabindex="-1" hidden>
+          <p id="error-summary-heading" class="form-alert__title"></p>
+          <ul id="error-summary-list" class="form-alert__list"></ul>
+        </div>
+
+
+        <!-- Title -->
+        <div class="field" id="field-title">
+
+          <label class="field__label" for="title">
+            Title
+            <span class="tag tag--required">Required</span>
+          </label>
+
+          <p id="title-hint" class="field__hint">Up to 120 characters.</p>
+
+          <p id="title-error" class="field__error" hidden>
+            <svg
+              aria-hidden="true"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#A3260F"
+              stroke-width="2.4"
+              stroke-linecap="round">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 7v6M12 16.5v.5"></path>
+            </svg>
+            <span>Error: <span id="title-error-text"></span></span>
+          </p>
+
+          <input
+            id="title"
+            name="title"
+            class="field__control"
+            type="text"
+            maxlength="120"
+            autocomplete="off"
+            required
+            aria-describedby="title-hint title-error">
+
+        </div>
+
+
+        <!-- Category -->
+        <div class="field" id="field-category">
+
+          <label class="field__label" for="category">
+            Category
+            <span class="tag tag--required">Required</span>
+          </label>
+
+          <p id="category-hint" class="field__hint">Choose the group that fits best.</p>
+
+          <p id="category-error" class="field__error" hidden>
+            <svg
+              aria-hidden="true"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#A3260F"
+              stroke-width="2.4"
+              stroke-linecap="round">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 7v6M12 16.5v.5"></path>
+            </svg>
+            <span>Error: <span id="category-error-text"></span></span>
+          </p>
+
+          <select
+            id="category"
+            name="category"
+            class="field__control"
+            required
+            aria-describedby="category-hint category-error">
+            <option value="Tutoring" selected>Tutoring</option>
+            <option value="Clubs">Clubs</option>
+            <option value="Events">Events</option>
+            <option value="Opportunities">Opportunities</option>
+          </select>
+
+        </div>
+
+
+        <!-- Description -->
+        <div class="field" id="field-description">
+
+          <label class="field__label" for="description">
+            Description
+            <span class="tag tag--required">Required</span>
+          </label>
+
+          <p id="description-hint" class="field__hint">Up to 2,000 characters. Line breaks are kept.</p>
+
+          <p id="description-error" class="field__error" hidden>
+            <svg
+              aria-hidden="true"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#A3260F"
+              stroke-width="2.4"
+              stroke-linecap="round">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 7v6M12 16.5v.5"></path>
+            </svg>
+            <span>Error: <span id="description-error-text"></span></span>
+          </p>
+
+          <textarea
+            id="description"
+            name="description"
+            class="field__control"
+            rows="7"
+            maxlength="2000"
+            required
+            aria-describedby="description-hint description-error"></textarea>
+
+        </div>
+
+
+        <!-- Contact information (optional) -->
+        <div class="field" id="field-contact">
+
+          <label class="field__label" for="contact">
+            Contact information
+            <span class="tag tag--optional">Optional</span>
+          </label>
+
+          <p id="contact-hint" class="field__hint">
+            Shown as plain text — for example an email address or club name.
+            Up to 200 characters.
+          </p>
+
+          <p id="contact-error" class="field__error" hidden>
+            <svg
+              aria-hidden="true"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#A3260F"
+              stroke-width="2.4"
+              stroke-linecap="round">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 7v6M12 16.5v.5"></path>
+            </svg>
+            <span>Error: <span id="contact-error-text"></span></span>
+          </p>
+
+          <input
+            id="contact"
+            name="contact"
+            class="field__control"
+            type="text"
+            maxlength="200"
+            autocomplete="off"
+            aria-describedby="contact-hint contact-error">
+
+        </div>
+
+
+        <!-- Event link (optional) -->
+        <div class="field" id="field-eventUrl">
+
+          <label class="field__label" for="eventUrl">
+            Event link
+            <span class="tag tag--optional">Optional</span>
+          </label>
+
+          <p id="eventUrl-hint" class="field__hint">Must start with http:// or https://.</p>
+
+          <p id="eventUrl-error" class="field__error" hidden>
+            <svg
+              aria-hidden="true"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#A3260F"
+              stroke-width="2.4"
+              stroke-linecap="round">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 7v6M12 16.5v.5"></path>
+            </svg>
+            <span>Error: <span id="eventUrl-error-text"></span></span>
+          </p>
+
+          <input
+            id="eventUrl"
+            name="eventUrl"
+            class="field__control"
+            type="url"
+            inputmode="url"
+            maxlength="500"
+            autocomplete="off"
+            aria-describedby="eventUrl-hint eventUrl-error">
+
+        </div>
+
+
+        <div class="form__actions">
+          <button id="submit-button" type="submit" class="btn btn--primary form__submit">Post announcement</button>
+        </div>
+
+      </form>
+
+    </div>
+
+    <noscript>
+      <p class="panel">This form needs JavaScript to post an announcement.</p>
+    </noscript>
+
+  </main>
+
+
+  <footer class="site-footer">
+    <p>CS Bulletin Board is a CSCI2690 student project prototype.</p>
+  </footer>
+
+
+  <script src="js/validation.js"></script>
+  <script src="js/notices.js"></script>
+  <script src="js/post.js"></script>
+
+</body>
+</html>
