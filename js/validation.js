@@ -129,13 +129,13 @@ function cleanParagraph(raw) {
 function isWebLink(text) {
   if (!/^https?:\/\//i.test(text)) return false;
 
-  // No spaces and no control characters (\p{Cc}) anywhere in the link.
-  if (/[\s\p{Cc}]/u.test(text)) return false;
+  // No spaces and no control characters (the Unicode control characters) anywhere in the link.
+  if (/[\s\u0000-\u001F\u007F-\u009F]/.test(text)) return false;
 
   let url;
   try {
     url = new URL(text);
-  } catch {
+  } catch (error) {
     return false;
   }
 

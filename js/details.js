@@ -75,7 +75,7 @@
 
 
   // Back link: a visitor who came from a search on the board goes back to that search.
-  const query = (params.get('q') ?? '').trim();
+  const query = (params.get('q') || '').trim();
 
   if (query) {
     backLink.href = 'index.html?q=' + encodeURIComponent(query);
@@ -84,7 +84,7 @@
 
 
   // The id comes from the address. Ids are whole numbers from 1 up, with no leading zero.
-  const idText = params.get('id') ?? '';
+  const idText = params.get('id') || '';
   const announcement = /^[1-9][0-9]{0,14}$/.test(idText) ? Notices.get(Number(idText)) : null;
 
   if (announcement) {

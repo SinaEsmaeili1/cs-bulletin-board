@@ -27,7 +27,7 @@
 
   // The search the board is showing, read from the address bar (for example index.html?q=club).
   // The search form puts it there when Search is pressed. '' means no search.
-  const query = (params.get('q') ?? '').trim();
+  const query = (params.get('q') || '').trim();
 
   // The clear button shows when the box has text or a search is applied.
   function updateClearButton() {
@@ -59,7 +59,8 @@
   function showResults(items) {
     if (items.length > 0) {
 
-      list.replaceChildren(...items.map(buildCard));
+      while (list.firstChild) list.removeChild(list.firstChild);
+      items.forEach((item) => list.appendChild(buildCard(item)));
       list.hidden = false;
       statusText.textContent = countMessage(items.length);
 

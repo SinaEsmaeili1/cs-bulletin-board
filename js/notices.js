@@ -124,11 +124,11 @@ const Notices = (() => {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
       if (Array.isArray(saved)) return saved;
-    } catch {
+    } catch (error) {
       // Storage is blocked, or the saved value is not valid JSON: use the demo notices.
     }
 
-    return DEMO_NOTICES.map((notice) => ({ ...notice }));
+    return DEMO_NOTICES.map((notice) => Object.assign({}, notice));
   }
 
   // Returns every notice, newest first. A non-empty query keeps only the titles
@@ -144,7 +144,7 @@ const Notices = (() => {
 
   // Returns one notice, or null when there is none with that id.
   function get(id) {
-    return readAll().find((notice) => notice.id === id) ?? null;
+    return readAll().find((notice) => notice.id === id) || null;
   }
 
 
@@ -154,12 +154,12 @@ const Notices = (() => {
     const all = readAll();
 
     const notice = {
-      id: Math.max(0, ...all.map((saved) => saved.id)) + 1,
+      id: Math.max.apply(null, [0].concat(all.map((saved) => saved.id))) + 1,
       title: value.title,
       category: value.category,
       description: value.description,
-      contact: value.contact ?? null,
-      eventUrl: value.eventUrl ?? null,
+      contact: value.contact || null,
+      eventUrl: value.eventUrl || null,
       createdAt: new Date().toISOString(),
       isDemo: false,
     };
@@ -174,7 +174,7 @@ const Notices = (() => {
   function reset() {
     try {
       localStorage.removeItem(STORAGE_KEY);
-    } catch {
+    } catch (error) {
       // Storage is blocked, so nothing was saved in the first place.
     }
   }

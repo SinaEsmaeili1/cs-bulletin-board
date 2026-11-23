@@ -54,7 +54,7 @@
     const list = byId('error-summary-list');
     const problems = FIELDS.filter(({ name }) => errors[name]);
 
-    list.replaceChildren();
+    while (list.firstChild) list.removeChild(list.firstChild);
 
     if (problems.length === 0) {
       summary.hidden = true;
@@ -151,7 +151,7 @@
     let announcement;
     try {
       announcement = Notices.add(result.value);
-    } catch {
+    } catch (error) {
       showSaveError();
       return;
     }
