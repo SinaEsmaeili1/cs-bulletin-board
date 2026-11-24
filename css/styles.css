@@ -5,8 +5,7 @@
    [5] Buttons                   [6] Search form and text box
    [7] Status line               [8] Announcement cards and the list
    [9] Panels and alerts         [10] Announcement page and back link
-   [11] Not-found block          [12] Footer
-   [13] Small screens (480px and narrower)
+   [11] Not-found block          [12] Small screens (480px and narrower)
    ========================================================================== */
 
 
@@ -29,7 +28,6 @@
   --error-bg: #FBEDEA;
   --success: #1E5A3A;
   --success-bg: #E8F2EC;
-  --header-label: #F0DFA8;
 
   --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-body: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -187,15 +185,6 @@ a:hover {
   text-decoration: underline;
   text-decoration-color: var(--gold);
   text-underline-offset: 4px;
-}
-
-.prototype-label {
-  padding: 3px 10px;
-  border: 1px solid var(--gold);
-  border-radius: 999px;
-  color: var(--header-label);
-  font-size: 13px;
-  font-weight: 500;
 }
 
 
@@ -406,11 +395,6 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   gap: 8px;
-}
-
-.card__demo {
-  font-size: 13px;
-  color: var(--muted);
 }
 
 .card__title {
@@ -653,23 +637,7 @@ a:hover {
 }
 
 
-/* [12] Footer */
-
-.site-footer {
-  border-top: 1px solid var(--border);
-}
-
-.site-footer p {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 20px 24px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--muted);
-}
-
-
-/* [13] Small screens: 480px and narrower */
+/* [12] Small screens: 480px and narrower */
 
 @media (max-width: 480px) {
   .site-header__inner {

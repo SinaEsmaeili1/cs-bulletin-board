@@ -14,7 +14,6 @@
 
   const categoryEl = document.getElementById('details-category');
   const dateEl = document.getElementById('details-date');
-  const demoEl = document.getElementById('details-demo');
   const titleEl = document.getElementById('details-title');
   const descriptionEl = document.getElementById('details-description');
 
@@ -27,7 +26,7 @@
 
   function showNotFound() {
     notFound.hidden = false;
-    document.title = 'Announcement not found – CS Bulletin Board';
+    document.title = 'Announcement not found | CS Bulletin Board';
   }
 
 
@@ -51,7 +50,6 @@
     categoryEl.textContent = announcement.category;
     dateEl.setAttribute('datetime', announcement.createdAt);
     dateEl.textContent = Notices.formatDate(announcement.createdAt);
-    demoEl.hidden = !announcement.isDemo;
 
     titleEl.textContent = announcement.title;
     descriptionEl.textContent = announcement.description; // CSS keeps the line breaks
@@ -70,7 +68,7 @@
     extraList.hidden = !hasContact && !hasLink;
 
     article.hidden = false;
-    document.title = announcement.title + ' – CS Bulletin Board';
+    document.title = announcement.title + ' | CS Bulletin Board';
   }
 
 

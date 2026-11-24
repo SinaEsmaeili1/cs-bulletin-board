@@ -109,7 +109,7 @@
     byId('post-form').hidden = true;
     byId('success-panel').hidden = false;
 
-    document.title = 'Announcement posted – CS Bulletin Board';
+    document.title = 'Announcement posted | CS Bulletin Board';
     byId('success-heading').focus();
   }
 
@@ -121,7 +121,7 @@
     byId('success-panel').hidden = true;
     byId('post-form').hidden = false;
 
-    document.title = 'Post an announcement – CS Bulletin Board';
+    document.title = 'Post an announcement | CS Bulletin Board';
     byId('title').focus();
   }
 

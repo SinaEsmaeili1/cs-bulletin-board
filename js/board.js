@@ -100,7 +100,6 @@
 
     const meta = el('div', 'card__meta');
     meta.append(textEl('span', 'chip', item.category));
-    if (item.isDemo) meta.append(textEl('span', 'card__demo', 'Demo notice'));
 
     // The title link is the "stretched link": its ::after covers the whole card (see CSS).
     // It carries the search along, so the details page can link back to the same results.

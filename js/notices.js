@@ -13,14 +13,14 @@ const Notices = (() => {
 
     {
       id: 1,
-      title: 'Free CSCI 1110 Java help — drop in',
+      title: 'Free CSCI 1110 Java help: drop in',
       category: 'Tutoring',
       description:
-        'Stuck on loops, arrays or your first class design? Senior students run drop-in help every Tuesday and Thursday afternoon. Bring your code and your questions; no appointment needed.\n' +
+        'Stuck on loops, arrays or your first class design? Senior students run drop in help every Tuesday and Thursday afternoon. Bring your code and your questions; no appointment needed.\n' +
         '\n' +
-        'When: Tuesdays and Thursdays, 2:30–4:30 pm (demo times)\n' +
+        'When: Tuesdays and Thursdays, 2:30 to 4:30 pm (demo times)\n' +
         'Where: CS building, Learning Centre (demo location)',
-      contact: 'java-help-demo@example.com',
+      contact: 'javahelp.demo@example.com',
       eventUrl: null,
       createdAt: '2026-11-18T15:00:00.000Z',
       isDemo: true,
@@ -28,45 +28,45 @@ const Notices = (() => {
 
     {
       id: 2,
-      title: 'Hack Night: build a command-line tool in three hours',
+      title: 'Hack Night: build a command line tool in three hours',
       category: 'Events',
       description:
-        'Bring a laptop and an idea for a small command-line tool. We’ll start with a 15-minute walkthrough of argument parsing, then you’ll have three hours to build something that runs.\n' +
+        'Bring a laptop and an idea for a small command line tool. We’ll start with a 15 minute walkthrough of argument parsing, then you’ll have three hours to build something that runs.\n' +
         '\n' +
         'You can work alone or in pairs. Snacks provided.\n' +
         '\n' +
-        'When: Friday, 6–9 pm (demo date)\n' +
+        'When: Friday, 6 to 9 pm (demo date)\n' +
         'Where: CS building, Room 127 (demo location)',
-      contact: 'hacknight-demo@example.com',
-      eventUrl: 'https://example.com/hack-night',
+      contact: 'hacknight.demo@example.com',
+      eventUrl: 'https://example.com/hacknight',
       createdAt: '2026-11-17T15:00:00.000Z',
       isDemo: true,
     },
 
     {
       id: 3,
-      title: 'Competitive Programming Club — weekly practice',
+      title: 'Competitive Programming Club: weekly practice',
       category: 'Clubs',
       description:
         'We solve two or three contest problems together each week and talk through approaches afterwards. All levels welcome, including people who have never entered a contest.\n' +
         '\n' +
         'When: Wednesdays, 5:30 pm (demo time)\n' +
         'Where: CS building, Room 430 (demo location)',
-      contact: 'Competitive Programming Club (demo) — cp-club-demo@example.com',
-      eventUrl: 'https://example.com/cp-club',
+      contact: 'Competitive Programming Club (demo), cpclub.demo@example.com',
+      eventUrl: 'https://example.com/cpclub',
       createdAt: '2026-11-16T15:00:00.000Z',
       isDemo: true,
     },
 
     {
       id: 4,
-      title: 'Summer research assistant — systems lab',
+      title: 'Summer research assistant: systems lab',
       category: 'Opportunities',
       description:
-        'A faculty-led lab is looking for an undergraduate research assistant for the summer term. Interest in operating systems or performance measurement is an asset.\n' +
+        'A faculty led lab is looking for an undergraduate research assistant for the summer term. Interest in operating systems or performance measurement is an asset.\n' +
         '\n' +
         'To apply, send a short note about your interests and an unofficial transcript. This is a demo posting; the position is fictional.',
-      contact: 'systems-lab-demo@example.com',
+      contact: 'systemslab.demo@example.com',
       eventUrl: null,
       createdAt: '2026-11-15T15:00:00.000Z',
       isDemo: true,
@@ -77,10 +77,10 @@ const Notices = (() => {
       title: 'Discrete math study group',
       category: 'Tutoring',
       description:
-        'A peer-run study group working through practice problems on proofs, sets and counting. We meet weekly and share notes afterwards.\n' +
+        'A peer run study group working through practice problems on proofs, sets and counting. We meet weekly and share notes afterwards.\n' +
         '\n' +
         'When: Mondays, 4 pm (demo time)\n' +
-        'Where: CS building, second-floor study area (demo location)',
+        'Where: CS building, second floor study area (demo location)',
       contact: null,
       eventUrl: null,
       createdAt: '2026-11-14T15:00:00.000Z',
@@ -89,15 +89,15 @@ const Notices = (() => {
 
     {
       id: 6,
-      title: 'Résumé review drop-in for CS students',
+      title: 'Résumé review drop in for CS students',
       category: 'Events',
       description:
-        'Upper-year students and alumni volunteers review résumés for co-op and internship applications. Bring a printed or digital copy.\n' +
+        'Upper year students and alumni volunteers review résumés for internship and work term applications. Bring a printed or digital copy.\n' +
         '\n' +
-        'When: Thursday, 12–2 pm (demo date)\n' +
+        'When: Thursday, 12 to 2 pm (demo date)\n' +
         'Where: CS building atrium (demo location)',
       contact: null,
-      eventUrl: 'https://example.com/resume-review',
+      eventUrl: 'https://example.com/resumereview',
       createdAt: '2026-11-12T15:00:00.000Z',
       isDemo: true,
     },
