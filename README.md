@@ -7,7 +7,7 @@ This is a CSCI2690 student project prototype. It is the front-end demo: it runs 
 ## Authors
 
 - Sina Esmaeili
-- Omar Abdolell
+
 
 ## How to run
 
